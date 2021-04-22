@@ -1,0 +1,22 @@
+.chessTile {
+	-fx-min-height:  80px;
+	-fx-min-width:   80px;
+	-fx-pref-height: 80px;
+	-fx-pref-width:  80px;
+	-fx-max-height:  80px;
+	-fx-max-width:   80px;
+	-fx-background-radius: 0em;
+}
+
+.chessWhiteTile {
+	-fx-background-color: #FFCE9E;
+}
+
+.chessBlackTile {
+	-fx-background-color: #D18B47;
+}
+
+.chessActiveTile {
+	-fx-background-color: red;
+}
+
