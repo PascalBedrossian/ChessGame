@@ -2,6 +2,8 @@ package pieces;
 
 import java.util.ArrayList;
 
+import board.ListOfMoves;
+
 public class Pawn extends Piece
 {
     /**
@@ -22,7 +24,7 @@ public class Pawn extends Piece
      * 
      * @return an array of type ListOfMoves
      */
-    protected ListOfMoves[] getMoves(){
+    public ListOfMoves[] getMoves(){
         boolean isWhite = this.color;
 
         ListOfMoves[] moves = {};
@@ -58,7 +60,7 @@ public class Pawn extends Piece
      * 
      * @return a boolean true if it has single moves and false otherwise
      */
-    protected boolean hasSingleMove(){
+    public boolean hasSingleMove(){
         return true;
     }
 
@@ -67,7 +69,7 @@ public class Pawn extends Piece
      * 
      * @return a String
      */
-    protected String getName(){
+    public String getName(){
         return "pawn";
     }
 }

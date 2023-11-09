@@ -1,5 +1,7 @@
 package pieces;
 
+import board.ListOfMoves;
+
 public class Queen extends Piece
 {
     /**
@@ -20,7 +22,7 @@ public class Queen extends Piece
      * 
      * @return an array of type ListOfMoves
      */
-    protected ListOfMoves[] getMoves(){
+    public ListOfMoves[] getMoves(){
         ListOfMoves[] m = 
         { 
             ListOfMoves.UP,
@@ -40,7 +42,7 @@ public class Queen extends Piece
      * 
      * @return a boolean true if it has single moves and false otherwise
      */
-    protected boolean hasSingleMove(){
+    public boolean hasSingleMove(){
         return false;
     }
 
@@ -49,7 +51,7 @@ public class Queen extends Piece
      * 
      * @return a String
      */
-    protected String getName(){
+    public String getName(){
         return "Q";
     }
 }

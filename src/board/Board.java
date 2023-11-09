@@ -1,5 +1,7 @@
 package board;
 
+import java.util.ArrayList;
+
 import javafx.scene.layout.GridPane;
 import pieces.Bishop;
 import pieces.King;
@@ -8,9 +10,7 @@ import pieces.Pawn;
 import pieces.Piece;
 import pieces.Queen;
 import pieces.Rook;
-
-import java.util.Arrays;
-import java.util.ArrayList;
+import ui.GUI;
 
 public class Board extends GridPane {
 
@@ -290,7 +290,7 @@ public class Board extends GridPane {
 				newTile.setPiece(oldTile.removePiece());
 				valid = true;
 			}
-			if (valid && !selectedPiece.color) { // black color
+			if (valid && !selectedPiece.isWhite()) { // black color
 				// update king coord on the copied board
 				blackKingPosition[0] = m.getNewX();
 				blackKingPosition[1] = m.getNewY();
@@ -321,7 +321,7 @@ public class Board extends GridPane {
 		// going over board and if piece on tile, try a move to opponent coordinates
 		for (int x = 0; x < tiles[0].length && !itCanEat; x++) {
 			for (int y = 0; y < tiles[0].length && !itCanEat; y++) {
-				if (tiles[x][y].getPiece() != null && tiles[x][y].getPiece().color != color) {
+				if (tiles[x][y].getPiece() != null && tiles[x][y].getPiece().isWhite() != color) {
 					MoveInformation moveToTry = new MoveInformation(x, y, oppX, oppY);
 					Board tempBoard = this.copyBoard();
 					if (tempBoard.processMove(moveToTry, false)) {
@@ -351,7 +351,7 @@ public class Board extends GridPane {
 		// Piece can stop the check situation
 		for (int x = 0; x < tiles[0].length && !canProtect; x++) {
 			for (int y = 0; y < tiles[0].length && !canProtect; y++) {
-				if (tiles[x][y].getPiece() != null && tiles[x][y].getPiece().color == color
+				if (tiles[x][y].getPiece() != null && tiles[x][y].getPiece().isWhite() == color
 						&& tiles[x][y].getPiece().getClass() != King.class) {
 					for (int x1 = 0; x1 < tiles[0].length && !canProtect; x1++) {
 						for (int y1 = 0; y1 < tiles[0].length && !canProtect; y1++) {
@@ -509,13 +509,14 @@ public class Board extends GridPane {
 		Piece blackRookR = tiles[7][7].getPiece();// right B-rook
 		Piece blackRookL = tiles[0][7].getPiece();// left B-rook
 
-		if (selectedPiece.color) { // White King
-			if (newTile.getX() == 6 && whiteRookR != null && !whiteRookR.hasMoved && tiles[5][0].getPiece() == null) { // right
-																														// and
-																														// no
-																														// pieces
-																														// between
-				if (castleDoneLegally(selectedPiece.color, true)) {// no checks onProcess
+		if (selectedPiece.isWhite()) { // White King
+			if (newTile.getX() == 6 && whiteRookR != null && !whiteRookR.getHasMoved()
+					&& tiles[5][0].getPiece() == null) { // right
+				// and
+				// no
+				// pieces
+				// between
+				if (castleDoneLegally(selectedPiece.isWhite(), true)) {// no checks onProcess
 					newTile.setPiece(oldTile.removePiece());
 					tiles[5][0].setPiece(tiles[7][0].removePiece());
 					castlingAvailable = true;
@@ -523,9 +524,9 @@ public class Board extends GridPane {
 					GUI.displayIllegalCastling();
 				}
 			}
-			if (newTile.getX() == 2 && whiteRookL != null && !whiteRookL.hasMoved && !castlingAvailable
+			if (newTile.getX() == 2 && whiteRookL != null && !whiteRookL.getHasMoved() && !castlingAvailable
 					&& tiles[1][0].getPiece() == null && tiles[3][0].getPiece() == null) {// left and no pieces between
-				if (castleDoneLegally(selectedPiece.color, false)) {// no checks onProcess
+				if (castleDoneLegally(selectedPiece.isWhite(), false)) {// no checks onProcess
 					newTile.setPiece(oldTile.removePiece());
 					tiles[3][0].setPiece(tiles[0][0].removePiece());
 					castlingAvailable = true;
@@ -533,13 +534,14 @@ public class Board extends GridPane {
 					GUI.displayIllegalCastling();
 				}
 			}
-		} else if (!selectedPiece.color) { // Black king
-			if (newTile.getX() == 6 && blackRookR != null && !blackRookR.hasMoved && tiles[5][7].getPiece() == null) { // right
-																														// and
-																														// no
-																														// piece
-																														// between
-				if (castleDoneLegally(selectedPiece.color, true)) {// no checks onProcess
+		} else if (!selectedPiece.isWhite()) { // Black king
+			if (newTile.getX() == 6 && blackRookR != null && !blackRookR.getHasMoved()
+					&& tiles[5][7].getPiece() == null) { // right
+				// and
+				// no
+				// piece
+				// between
+				if (castleDoneLegally(selectedPiece.isWhite(), true)) {// no checks onProcess
 					newTile.setPiece(oldTile.removePiece());
 					tiles[5][7].setPiece(tiles[7][7].removePiece());
 					castlingAvailable = true;
@@ -547,9 +549,9 @@ public class Board extends GridPane {
 					GUI.displayIllegalCastling();
 				}
 			}
-			if (newTile.getX() == 2 && blackRookL != null && !blackRookL.hasMoved && !castlingAvailable
+			if (newTile.getX() == 2 && blackRookL != null && !blackRookL.getHasMoved() && !castlingAvailable
 					&& tiles[1][7].getPiece() == null && tiles[3][7].getPiece() == null) {// left and no pieces between
-				if (castleDoneLegally(selectedPiece.color, false)) {// no checks onProcess
+				if (castleDoneLegally(selectedPiece.isWhite(), false)) {// no checks onProcess
 					newTile.setPiece(oldTile.removePiece());
 					tiles[3][7].setPiece(tiles[0][7].removePiece());
 					castlingAvailable = true;
@@ -604,7 +606,7 @@ public class Board extends GridPane {
 		// Creating these ArrayLists now is the status before a move have been done
 		ArrayList<Tile> checkTilesW = isKingChecked(true);// White in check if not empty
 		ArrayList<Tile> checkTilesB = isKingChecked(false);// Black in check if not empty
-		boolean color = selectedPiece.color;
+		boolean color = selectedPiece.isWhite();
 
 		if (turnEnabled) {// user has turn enabled
 			boolean turnCheck = (count % 2 == 0);// determines who's turn it is
@@ -670,8 +672,8 @@ public class Board extends GridPane {
 		}
 		if (done) {
 			selectedPiece.setHasMoved(true);
-			selectedPiece.x = p.getNewX();
-			selectedPiece.y = p.getNewY();
+			selectedPiece.setX(p.getNewX());
+			selectedPiece.setY(p.getNewY());
 			numberOfMoves++;
 			if (setAutomatic) {// change rotation automatically
 				this.changeSide();
@@ -730,7 +732,7 @@ public class Board extends GridPane {
 	private boolean pawnProcessingMove(MoveInformation p, Tile newTile, Tile oldTile, boolean toDisplay) {
 		Piece choicePiece = null;
 		boolean moveProcessed = false;
-		boolean color = oldTile.getPiece().color;
+		boolean color = oldTile.getPiece().isWhite();
 
 		if (p.getNewY() == 7) { // White pawnPromotion
 			if (pieceSafeMoveTest(p, true, false)) {// Safe move that do not occur own king in check
@@ -757,7 +759,7 @@ public class Board extends GridPane {
 				GUI.displayIllegalInfo();
 			}
 		} else {// move not on the end of the board
-			if (oldTile.getPiece().color) {// white piece
+			if (oldTile.getPiece().isWhite()) {// white piece
 				if (pieceSafeMoveTest(p, true, false)) {// safe move that do not occur own king in check
 					newTile.setPiece(oldTile.removePiece());
 					moveProcessed = true;
@@ -794,12 +796,12 @@ public class Board extends GridPane {
 		boolean validMove = false;
 
 		if (pawnEnPassant) {// If last move was of 2 tiles for a pawn
-			boolean pieceColor = tiles[m.getOldX()][m.getOldY()].getPiece().color;
+			boolean pieceColor = tiles[m.getOldX()][m.getOldY()].getPiece().isWhite();
 			int x = enPassantCoordinates[0];// store coordinates
 			int y = enPassantCoordinates[1];// store coordinates
 			Tile tileToAttack = tiles[x][y];// store as a Tile
 
-			if (tileToAttack.getPiece().color != pieceColor) {// not the same color
+			if (tileToAttack.getPiece().isWhite() != pieceColor) {// not the same color
 				if (m.getNewX() == tileToAttack.getX()
 						&& (m.getOldX() == tileToAttack.getX() - 1 || m.getOldX() == tileToAttack.getX() + 1)) { // both
 																													// pawns
@@ -973,7 +975,7 @@ public class Board extends GridPane {
 
 		for (int x = 0; x < tiles[0].length; x++) {
 			for (int y = 0; y < tiles[0].length; y++) {
-				if (tiles[x][y].isTileOccupied() && tiles[x][y].getPiece().color != color) {
+				if (tiles[x][y].isTileOccupied() && tiles[x][y].getPiece().isWhite() != color) {
 					// if there is a piece and not same color then the king we are analyzing
 					MoveInformation moveInfo = new MoveInformation(x, y, kingX, kingY);
 					if (isMoveInList(moveInfo))// if move is valid towards the king

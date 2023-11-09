@@ -1,5 +1,7 @@
 package pieces;
 
+import board.ListOfMoves;
+
 public class Rook extends Piece
 {
     /**
@@ -18,7 +20,7 @@ public class Rook extends Piece
      * Collect all the moves the Rook can do
      * and store them in an array of type ListOfMoves
      */
-    protected ListOfMoves[] getMoves(){
+    public ListOfMoves[] getMoves(){
         ListOfMoves[] m = 
         {
             ListOfMoves.UP,
@@ -34,7 +36,7 @@ public class Rook extends Piece
      * 
      * @return a boolean true if it has single moves and false otherwise
      */
-    protected boolean hasSingleMove(){
+    public boolean hasSingleMove(){
         return false;
     }
 
@@ -43,7 +45,7 @@ public class Rook extends Piece
      * 
      * @return a String
      */
-    protected String getName(){
+    public String getName(){
         return "R";
     }
 }

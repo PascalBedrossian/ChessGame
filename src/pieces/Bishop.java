@@ -1,5 +1,7 @@
 package pieces;
 
+import board.ListOfMoves;
+
 public class Bishop extends Piece
 {
     /**
@@ -20,7 +22,7 @@ public class Bishop extends Piece
      * 
      * @return an array of type ListOfMoves
      */
-    protected ListOfMoves[] getMoves(){
+    public ListOfMoves[] getMoves(){
         ListOfMoves[] m = 
         { 
         ListOfMoves.UP_RIGHT,
@@ -36,7 +38,7 @@ public class Bishop extends Piece
      * 
      * @return a boolean true if it has single moves and false otherwise
      */
-    protected boolean hasSingleMove(){
+    public boolean hasSingleMove(){
         return false;
     }
 
@@ -45,7 +47,7 @@ public class Bishop extends Piece
      * 
      * @return a String
      */
-    protected String getName(){
+    public String getName(){
         return "B";
     }
 }

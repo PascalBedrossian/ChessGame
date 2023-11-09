@@ -1,5 +1,6 @@
 package ui;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import board.Board;
@@ -9,23 +10,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.ChoiceDialog;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import pieces.Bishop;
 import pieces.Knight;
 import pieces.Piece;
 import pieces.Queen;
 import pieces.Rook;
-
-import java.util.ArrayList;
 
 /**
  * I learned a lot from my chess project. I was first worried about how I was
@@ -71,9 +67,9 @@ public class GUI extends Application {
 	 */
 	private void initializeGui(Stage mainStage) {
 		mainStage.setTitle("Chess Game");
-		mainStage.getIcons().add(new Image("Ressources/icons/app_icon.png"));
+		mainStage.getIcons().add(new Image(getClass().getResourceAsStream("/icons/app_icon.png")));
 
-		css = "Ressources/sheet-for-styles.css";
+		css = "/sheet-for-styles.css";
 
 		root = new BorderPane();
 		mainScene = new Scene(root);

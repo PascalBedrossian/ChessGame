@@ -1,11 +1,12 @@
 package pieces;
 
+import board.ListOfMoves;
 import javafx.scene.image.Image;
 
 public abstract class Piece implements Cloneable
 {
-    protected boolean hasMoved;
-    protected Image image;
+	protected boolean hasMoved;
+	protected Image image;
     protected boolean color;
     protected int x;
     protected int y;
@@ -24,7 +25,7 @@ public abstract class Piece implements Cloneable
         this.x = x;
         this.y = y;
 
-        String location = "Ressources/pieces/";
+        String location = "/pieces/";
         String filename = this.getColor() + "_" + this.getName() + ".png";
         this.image = new Image(location + filename, 70, 70, true, true);
     }
@@ -143,7 +144,7 @@ public abstract class Piece implements Cloneable
      * 
      * @return an array of type ListOfMoves
      */
-    protected abstract ListOfMoves[] getMoves();
+    public abstract ListOfMoves[] getMoves();
     
     /**
      * Abstract method common to all Pieces classes
@@ -152,7 +153,7 @@ public abstract class Piece implements Cloneable
      * 
      * @return a boolean true if it uses single Move and false otherwise
      */
-    protected abstract boolean hasSingleMove();
+    public abstract boolean hasSingleMove();
 
     /**
      * Abstract method common to all Pieces classes
@@ -161,5 +162,5 @@ public abstract class Piece implements Cloneable
      * 
      * @return a String
      */
-    protected abstract String getName();
+    public abstract String getName();
 }

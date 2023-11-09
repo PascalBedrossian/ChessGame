@@ -2,6 +2,9 @@ package pieces;
 
 import java.util.ArrayList;
 
+import board.ListOfMoves;
+import board.MoveInformation;
+
 public class King extends Piece
 {
     /**
@@ -23,7 +26,7 @@ public class King extends Piece
      * 
      * @return an array of type ListOfMoves
      */
-    protected ListOfMoves[] getMoves() {
+    public ListOfMoves[] getMoves() {
         ListOfMoves[] moves = {};
 
         ArrayList<ListOfMoves> kingMoves = new ArrayList<ListOfMoves>();
@@ -51,7 +54,7 @@ public class King extends Piece
      * 
      * @return a boolean true if it has single moves and false otherwise
      */
-    protected boolean hasSingleMove(){
+    public boolean hasSingleMove(){
         return true;
     }
 
@@ -60,7 +63,7 @@ public class King extends Piece
      * 
      * @return a String
      */
-    protected String getName(){
+    public String getName(){
         return "K";
     }
 
@@ -70,7 +73,7 @@ public class King extends Piece
      * @param mv 
      * @return a boolean
      */
-    protected boolean canAttack(MoveInformation mv){
+    public boolean canAttack(MoveInformation mv){
         return false;
     }
 }
