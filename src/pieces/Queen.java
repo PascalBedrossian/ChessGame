@@ -1,19 +1,21 @@
-public class Knight extends Piece
+package pieces;
+
+public class Queen extends Piece
 {
     /**
-     * Construct a new Knight Object
+     * Construct a new Queen Object
      * 
-     * @param color the color of the piece
+     * @param color the color of the piece 
      * @param x the x coordinate of the piece
      * @param y the y coordinate of the piece
      */
-    public Knight(boolean color, int x, int y){
+    public Queen(boolean color, int x, int y){
         // this calls the constructor of Piece
         super(color, x, y);
     }
 
     /**
-     * Collect all the moves the knight can do
+     * Collect all the moves the Queen can do
      * and store them in an array of type ListOfMoves
      * 
      * @return an array of type ListOfMoves
@@ -21,14 +23,14 @@ public class Knight extends Piece
     protected ListOfMoves[] getMoves(){
         ListOfMoves[] m = 
         { 
-            ListOfMoves.KNIGHT_LEFT_UP, 
-            ListOfMoves.KNIGHT_UP_LEFT, 
-            ListOfMoves.KNIGHT_UP_RIGHT,
-            ListOfMoves.KNIGHT_RIGHT_UP, 
-            ListOfMoves.KNIGHT_RIGHT_DOWN, 
-            ListOfMoves.KNIGHT_DOWN_RIGHT,
-            ListOfMoves.KNIGHT_DOWN_LEFT, 
-            ListOfMoves.KNIGHT_LEFT_DOWN 
+            ListOfMoves.UP,
+            ListOfMoves.UP_RIGHT,
+            ListOfMoves.RIGHT,
+            ListOfMoves.DOWN_RIGHT,
+            ListOfMoves.DOWN,
+            ListOfMoves.DOWN_LEFT,
+            ListOfMoves.LEFT,
+            ListOfMoves.UP_LEFT 
         };
         return m;
     }
@@ -39,7 +41,7 @@ public class Knight extends Piece
      * @return a boolean true if it has single moves and false otherwise
      */
     protected boolean hasSingleMove(){
-        return true;
+        return false;
     }
 
     /**
@@ -48,6 +50,6 @@ public class Knight extends Piece
      * @return a String
      */
     protected String getName(){
-        return "N";
+        return "Q";
     }
 }

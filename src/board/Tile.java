@@ -1,6 +1,9 @@
+package board;
+
 
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import pieces.Piece;
 
 public class Tile extends Button
 {

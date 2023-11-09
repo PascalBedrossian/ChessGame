@@ -1,3 +1,5 @@
+package board;
+
 public enum ListOfMoves
 {
     UP (0,1),
